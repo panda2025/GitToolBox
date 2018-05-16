@@ -24,10 +24,10 @@ import zielu.gittoolbox.tag.GitTagsPusher;
 import zielu.gittoolbox.tag.TagsPushSpec;
 import zielu.gittoolbox.ui.GitPushTagsDialog;
 
-public class GitPushTagsAction extends GitRepositoryAction {
+public class GtPushTagsAction extends GitRepositoryAction {
   private final EnumMap<Type, BiConsumer<VcsNotifier, GtPushResult>> errorResultHandlers = new EnumMap<>(Type.class);
 
-  public GitPushTagsAction() {
+  public GtPushTagsAction() {
     errorResultHandlers.put(ERROR, (notifier, result) ->
         notifier.notifyError("Push failed", result.getOutput()));
     errorResultHandlers.put(REJECTED, (notifier, result) ->

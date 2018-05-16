@@ -115,9 +115,13 @@
   </project-components>
 
   <actions>
-    <action class="zielu.gittoolbox.actions.GitPushTagsAction" id="GitToolBox.PushTags"
+    <action class="zielu.gittoolbox.actions.GtPushTagsAction" id="GitToolBox.PushTags"
             text="Push tags on branch...">
       <add-to-group group-id="GitRepositoryActions" anchor="after" relative-to-action="Vcs.Push"/>
+    </action>
+    <action class="zielu.gittoolbox.actions.GtUpdateAction" id="GitToolBox.Update"
+            text="Git ToolBox > Update All">
+        <add-to-group group-id="Git.Menu" anchor="first"/>
     </action>
   </actions>
 

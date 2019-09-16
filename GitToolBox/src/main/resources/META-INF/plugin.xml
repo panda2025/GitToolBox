@@ -106,6 +106,8 @@
     <projectService serviceImplementation="zielu.gittoolbox.fetch.AutoFetchExecutor"/>
 
     <webHelpProvider implementation="zielu.gittoolbox.help.GithubWikiHelpProvider"/>
+
+    <projectService serviceImplementation="zielu.gittoolbox.ui.gutter.TestGutterAnnotationProvider"/>
   </extensions>
 
   <application-components>
@@ -147,6 +149,10 @@
     </component>
     <component>
       <implementation-class>zielu.gittoolbox.ui.statusbar.StatusBarManager</implementation-class>
+    </component>
+
+    <component>
+      <implementation-class>zielu.gittoolbox.ui.gutter.GtGutterManager</implementation-class>
     </component>
     <!--
     <component>

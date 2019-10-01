@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.jetbrains.annotations.NotNull;
 import zielu.gittoolbox.config.ConfigNotifier;
 import zielu.gittoolbox.config.GitToolBoxConfig2;
-import zielu.gittoolbox.ui.util.AppUiUtil;
+import zielu.intellij.ui.ZUiUtil;
 
 class StatusBarManager implements ProjectComponent {
   private final AtomicBoolean opened = new AtomicBoolean();
@@ -29,7 +29,7 @@ class StatusBarManager implements ProjectComponent {
     connection.subscribe(ConfigNotifier.CONFIG_TOPIC, new ConfigNotifier() {
       @Override
       public void configChanged(GitToolBoxConfig2 previous, GitToolBoxConfig2 current) {
-        AppUiUtil.invokeLater(project, () -> {
+        ZUiUtil.invokeLater(project, () -> {
           if (opened.get()) {
             setVisible(current.showStatusWidget, current.showBlameWidget);
           }

@@ -24,7 +24,7 @@ import zielu.gittoolbox.config.GitToolBoxConfig2;
 import zielu.gittoolbox.revision.RevisionInfo;
 import zielu.gittoolbox.ui.blame.BlameUi;
 import zielu.gittoolbox.ui.blame.BlameUiService;
-import zielu.gittoolbox.ui.util.AppUiUtil;
+import zielu.intellij.ui.ZUiUtil;
 
 class BlameStatusWidget extends EditorBasedWidget implements StatusBarUi, StatusBarWidget.TextPresentation {
   private static final String ID = BlameStatusWidget.class.getName();
@@ -95,14 +95,14 @@ class BlameStatusWidget extends EditorBasedWidget implements StatusBarUi, Status
         @Override
         public void blameUpdated(@NotNull VirtualFile file) {
           if (shouldShow()) {
-            AppUiUtil.invokeLaterIfNeeded(myProject, () -> updateBlame(file));
+            ZUiUtil.invokeLaterIfNeeded(myProject, () -> updateBlame(file));
           }
         }
 
         @Override
         public void blameInvalidated(@NotNull VirtualFile file) {
           if (shouldShow()) {
-            AppUiUtil.invokeLaterIfNeeded(myProject, () -> updatePresentation(null));
+            ZUiUtil.invokeLaterIfNeeded(myProject, () -> updatePresentation(null));
           }
         }
       });
@@ -110,7 +110,7 @@ class BlameStatusWidget extends EditorBasedWidget implements StatusBarUi, Status
         @Override
         public void configChanged(GitToolBoxConfig2 previous, GitToolBoxConfig2 current) {
           if (shouldShow() && current.isBlameStatusPresentationChanged(previous)) {
-            AppUiUtil.invokeLaterIfNeeded(myProject, () -> updateBlame());
+            ZUiUtil.invokeLaterIfNeeded(myProject, () -> updateBlame());
           }
         }
       });
@@ -118,11 +118,11 @@ class BlameStatusWidget extends EditorBasedWidget implements StatusBarUi, Status
         @Override
         public void exitDumbMode() {
           if (shouldShow()) {
-            AppUiUtil.invokeLaterIfNeeded(myProject, () -> updateBlame());
+            ZUiUtil.invokeLaterIfNeeded(myProject, () -> updateBlame());
           }
         }
       });
-      AppUiUtil.invokeLater(myProject, this::updateBlame);
+      ZUiUtil.invokeLater(myProject, this::updateBlame);
     } else if (!visible && this.visible.compareAndSet(true, false)) {
       EditorFactory.getInstance().getEventMulticaster().removeCaretListener(caretListener);
     }

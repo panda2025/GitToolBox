@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 import org.jetbrains.concurrency.Promise;
 import zielu.gittoolbox.GitToolBoxUpdateProjectApp;
 import zielu.gittoolbox.config.GitToolBoxConfig2;
-import zielu.gittoolbox.ui.util.AppUiUtil;
+import zielu.intellij.ui.ZUiUtil;
 
 public class UpdateProject {
   private static final Logger LOG = Logger.getInstance(UpdateProject.class);
@@ -27,11 +27,11 @@ public class UpdateProject {
   }
 
   public void execute(@NotNull AnActionEvent event) {
-    AppUiUtil.invokeLaterIfNeeded(project, () -> invokeAction(event));
+    ZUiUtil.invokeLaterIfNeeded(project, () -> invokeAction(event));
   }
 
   public void execute(@Nullable InputEvent inputEvent) {
-    AppUiUtil.invokeLaterIfNeeded(project, () -> invokeAction(inputEvent));
+    ZUiUtil.invokeLaterIfNeeded(project, () -> invokeAction(inputEvent));
   }
 
   private void invokeAction(AnActionEvent event) {

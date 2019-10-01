@@ -5,6 +5,7 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.impl.DocumentMarkupModel;
 import com.intellij.openapi.editor.markup.ActiveGutterRenderer;
 import com.intellij.openapi.editor.markup.HighlighterLayer;
+import com.intellij.openapi.editor.markup.HighlighterTargetArea;
 import com.intellij.openapi.editor.markup.LineMarkerRendererEx;
 import com.intellij.openapi.editor.markup.MarkupModel;
 import com.intellij.openapi.editor.markup.RangeHighlighter;
@@ -32,19 +33,14 @@ public class TestGutterAnnotation implements GutterAnnotation {
     for (int line = 0, count = document.getLineCount(); line < count; line++) {
       int startOffset = document.getLineStartOffset(line);
       int endOffset = document.getLineEndOffset(line);
-      /*RangeHighlighter highlighter =
+      RangeHighlighter highlighter =
           markupModel.addRangeHighlighter(startOffset, endOffset, HighlighterLayer.SELECTION - 1, null,
-              HighlighterTargetArea.LINES_IN_RANGE);*/
-      RangeHighlighter highlighter1 =
-          markupModel.addLineHighlighter(line, HighlighterLayer.SELECTION - 1, null);
-      highlighter1.setLineMarkerRenderer(new MyMarkerRenderer(JBColor.PINK));
-      RangeHighlighter highlighter2 =
-          markupModel.addLineHighlighter(line, HighlighterLayer.SELECTION - 1, null);
-      highlighter2.setLineMarkerRenderer(new MyMarkerRenderer(JBColor.YELLOW));
+              HighlighterTargetArea.LINES_IN_RANGE);
+      highlighter.setLineMarkerRenderer(new MyMarkerRenderer(JBColor.PINK));
     }
   }
 
-  private class MyMarkerRenderer implements ActiveGutterRenderer, LineMarkerRendererEx {
+  private static class MyMarkerRenderer implements ActiveGutterRenderer, LineMarkerRendererEx {
     private final JBColor color;
 
     private MyMarkerRenderer(JBColor color) {

@@ -5,7 +5,6 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.event.EditorFactoryEvent;
 import com.intellij.openapi.editor.event.EditorFactoryListener;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.util.Disposer;
 import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiFile;
 import java.util.Map;
@@ -15,11 +14,11 @@ import org.jetbrains.annotations.NotNull;
 class GutterEditorFactoryListener implements EditorFactoryListener {
   private final Map<Editor, GutterAnnotation> annotations = new ConcurrentHashMap<>();
   private final Project project;
-  private final GutterAnnotationProvider provider;
+  private final GutterEditorManager gutterEditorManager;
 
-  GutterEditorFactoryListener(@NotNull Project project, @NotNull GutterAnnotationProvider provider) {
+  GutterEditorFactoryListener(@NotNull Project project, @NotNull GutterEditorManager gutterEditorManager) {
     this.project = project;
-    this.provider = provider;
+    this.gutterEditorManager = gutterEditorManager;
   }
 
   @Override
@@ -31,7 +30,7 @@ class GutterEditorFactoryListener implements EditorFactoryListener {
         return PsiDocumentManager.getInstance(project).getPsiFile(editor.getDocument());
       });
       if (psiFile != null && psiFile.isValid()) {
-        annotations.computeIfAbsent(editor, currentEditor -> provider.annotate(psiFile, currentEditor));
+        gutterEditorManager.editorCreated(editor, psiFile);
       }
     }
   }
@@ -44,10 +43,7 @@ class GutterEditorFactoryListener implements EditorFactoryListener {
   public void editorReleased(@NotNull EditorFactoryEvent event) {
     Editor editor = event.getEditor();
     if (isCurrentProject(editor)) {
-      GutterAnnotation removed = annotations.remove(editor);
-      if (removed != null) {
-        Disposer.dispose(removed);
-      }
+      gutterEditorManager.editorReleased(editor);
     }
   }
 }

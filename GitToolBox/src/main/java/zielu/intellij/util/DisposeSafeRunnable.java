@@ -1,4 +1,4 @@
-package zielu.gittoolbox.util;
+package zielu.intellij.util;
 
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.project.Project;

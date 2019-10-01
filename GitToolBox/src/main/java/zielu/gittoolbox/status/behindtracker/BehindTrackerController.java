@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import zielu.gittoolbox.cache.PerRepoInfoCache;
 import zielu.gittoolbox.cache.PerRepoStatusCacheListener;
 import zielu.gittoolbox.cache.RepoInfo;
-import zielu.gittoolbox.util.DisposeSafeRunnable;
+import zielu.intellij.util.DisposeSafeRunnable;
 import zielu.gittoolbox.util.GtUtil;
 import zielu.gittoolbox.util.ReschedulingExecutor;
 

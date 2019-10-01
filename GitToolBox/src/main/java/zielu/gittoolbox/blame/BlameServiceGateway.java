@@ -12,7 +12,7 @@ import com.intellij.util.messages.MessageBus;
 import git4idea.GitVcs;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import zielu.gittoolbox.util.DisposeSafeRunnable;
+import zielu.intellij.util.DisposeSafeRunnable;
 import zielu.gittoolbox.util.GatewayBase;
 import zielu.gittoolbox.util.GtUtil;
 

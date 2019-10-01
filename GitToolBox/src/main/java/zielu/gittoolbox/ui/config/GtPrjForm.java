@@ -40,9 +40,9 @@ import zielu.gittoolbox.config.CommitCompletionType;
 import zielu.gittoolbox.config.ReferencePointForStatusConfig;
 import zielu.gittoolbox.config.ReferencePointForStatusType;
 import zielu.gittoolbox.fetch.AutoFetchParams;
-import zielu.gittoolbox.ui.util.AppUiUtil;
 import zielu.gittoolbox.util.GtUtil;
 import zielu.intellij.ui.GtFormUi;
+import zielu.intellij.ui.ZUiUtil;
 
 public class GtPrjForm implements GtFormUi {
   private final Logger log = Logger.getInstance(getClass());
@@ -138,7 +138,7 @@ public class GtPrjForm implements GtFormUi {
       }
     });
     completionItemList.setCellRenderer(new CommitCompletionConfigCellRenderer());
-    completionItemPatternForm.addPatternUpdate(text -> AppUiUtil.invokeLaterIfNeeded(completionItemList::repaint));
+    completionItemPatternForm.addPatternUpdate(text -> ZUiUtil.invokeLaterIfNeeded(completionItemList::repaint));
     ToolbarDecorator commitCompletionDecorator = ToolbarDecorator.createDecorator(completionItemList);
     commitCompletionDecorator.setAddAction(button -> {
       RelativePoint popupPoint = button.getPreferredPopupPoint();

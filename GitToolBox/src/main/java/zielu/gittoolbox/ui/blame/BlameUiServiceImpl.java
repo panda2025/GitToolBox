@@ -29,7 +29,7 @@ import zielu.gittoolbox.config.GitToolBoxConfig2;
 import zielu.gittoolbox.metrics.ProjectMetrics;
 import zielu.gittoolbox.revision.RevisionInfo;
 import zielu.gittoolbox.revision.RevisionService;
-import zielu.gittoolbox.ui.util.AppUiUtil;
+import zielu.intellij.ui.ZUiUtil;
 
 class BlameUiServiceImpl implements BlameUiService {
   private static final TextAttributesKey ATTRIBUTES_KEY = DecorationColors.EDITOR_INLINE_BLAME_ATTRIBUTES;
@@ -170,7 +170,7 @@ class BlameUiServiceImpl implements BlameUiService {
 
   @Override
   public void blameUpdated(@NotNull VirtualFile file) {
-    AppUiUtil.invokeLaterIfNeeded(project, () -> handleBlameUpdated(file));
+    ZUiUtil.invokeLaterIfNeeded(project, () -> handleBlameUpdated(file));
   }
 
   private void handleBlameUpdated(@NotNull VirtualFile file) {

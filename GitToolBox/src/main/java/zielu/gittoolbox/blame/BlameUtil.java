@@ -5,7 +5,7 @@ import com.intellij.openapi.vcs.actions.VcsAnnotateUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
 import zielu.gittoolbox.FeatureToggles;
-import zielu.gittoolbox.ui.util.AppUiUtil;
+import zielu.intellij.ui.ZUiUtil;
 
 final class BlameUtil {
   private BlameUtil() {
@@ -14,13 +14,13 @@ final class BlameUtil {
 
   static void annotationLock(@NotNull Project project, @NotNull VirtualFile file) {
     if (FeatureToggles.useAnnotationLocks()) {
-      AppUiUtil.invokeAndWait(project, () -> VcsAnnotateUtil.getBackgroundableLock(project, file).lock());
+      ZUiUtil.invokeAndWait(project, () -> VcsAnnotateUtil.getBackgroundableLock(project, file).lock());
     }
   }
 
   static void annotationUnlock(@NotNull Project project, @NotNull VirtualFile file) {
     if (FeatureToggles.useAnnotationLocks()) {
-      AppUiUtil.invokeAndWait(project, () -> VcsAnnotateUtil.getBackgroundableLock(project, file).unlock());
+      ZUiUtil.invokeAndWait(project, () -> VcsAnnotateUtil.getBackgroundableLock(project, file).unlock());
     }
   }
 }

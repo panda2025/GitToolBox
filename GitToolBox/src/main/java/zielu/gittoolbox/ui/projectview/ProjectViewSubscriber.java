@@ -14,7 +14,7 @@ import zielu.gittoolbox.cache.RepoInfo;
 import zielu.gittoolbox.cache.VirtualFileRepoCache;
 import zielu.gittoolbox.config.ConfigNotifier;
 import zielu.gittoolbox.config.GitToolBoxConfig2;
-import zielu.gittoolbox.ui.util.AppUiUtil;
+import zielu.intellij.ui.ZUiUtil;
 
 class ProjectViewSubscriber implements ProjectComponent {
   private final AtomicBoolean active = new AtomicBoolean(true);
@@ -46,7 +46,7 @@ class ProjectViewSubscriber implements ProjectComponent {
 
   private void refreshProjectView() {
     if (active.get()) {
-      AppUiUtil.invokeLater(project, () -> {
+      ZUiUtil.invokeLater(project, () -> {
         if (active.get()) {
           ProjectView.getInstance(project).refresh();
         }

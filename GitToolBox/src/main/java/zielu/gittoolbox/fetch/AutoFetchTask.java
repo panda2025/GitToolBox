@@ -28,8 +28,8 @@ import zielu.gittoolbox.compat.NotificationHandle;
 import zielu.gittoolbox.compat.Notifier;
 import zielu.gittoolbox.metrics.Metrics;
 import zielu.gittoolbox.metrics.ProjectMetrics;
-import zielu.gittoolbox.ui.util.AppUiUtil;
-import zielu.gittoolbox.util.DisposeSafeCallable;
+import zielu.intellij.ui.ZUiUtil;
+import zielu.intellij.util.DisposeSafeCallable;
 import zielu.gittoolbox.util.GtUtil;
 
 class AutoFetchTask implements Runnable {
@@ -208,7 +208,7 @@ class AutoFetchTask implements Runnable {
           }
         }
       });
-      AppUiUtil.invokeLaterIfNeeded(project, task);
+      ZUiUtil.invokeLaterIfNeeded(project, task);
     } else {
       log.debug("Fetched skipped");
       owner.releaseAutoFetchLock();

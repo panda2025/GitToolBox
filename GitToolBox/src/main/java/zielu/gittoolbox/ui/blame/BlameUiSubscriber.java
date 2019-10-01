@@ -17,7 +17,7 @@ import zielu.gittoolbox.blame.BlameListener;
 import zielu.gittoolbox.blame.BlameService;
 import zielu.gittoolbox.config.ConfigNotifier;
 import zielu.gittoolbox.config.GitToolBoxConfig2;
-import zielu.gittoolbox.ui.util.AppUiUtil;
+import zielu.intellij.ui.ZUiUtil;
 
 class BlameUiSubscriber {
   private final Logger log = Logger.getInstance(getClass());
@@ -30,7 +30,7 @@ class BlameUiSubscriber {
       @Override
       public void configChanged(GitToolBoxConfig2 previous, GitToolBoxConfig2 current) {
         if (onConfigChanged(previous, current)) {
-          AppUiUtil.invokeLater(project, () -> handleConfigChanged());
+          ZUiUtil.invokeLater(project, () -> handleConfigChanged());
         }
       }
     });
@@ -70,7 +70,7 @@ class BlameUiSubscriber {
     GitToolBoxConfig2 config = GitToolBoxConfig2.getInstance();
     if (config.showEditorInlineBlame) {
       BlameUiService.getExistingInstance(project).ifPresent(service -> service.blameUpdated(file));
-      AppUiUtil.invokeLater(project, () -> handleBlameUpdate(file));
+      ZUiUtil.invokeLater(project, () -> handleBlameUpdate(file));
     }
   }
 

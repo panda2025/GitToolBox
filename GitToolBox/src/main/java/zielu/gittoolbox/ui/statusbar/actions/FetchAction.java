@@ -12,8 +12,8 @@ import git4idea.repo.GitRepository;
 import org.jetbrains.annotations.NotNull;
 import zielu.gittoolbox.ResBundle;
 import zielu.gittoolbox.fetch.GtFetchUtil;
-import zielu.gittoolbox.ui.util.AppUiUtil;
 import zielu.gittoolbox.util.GtUtil;
+import zielu.intellij.ui.ZUiUtil;
 
 public class FetchAction extends DumbAwareAction {
   private final GitRepository repository;
@@ -26,7 +26,7 @@ public class FetchAction extends DumbAwareAction {
   @Override
   public void actionPerformed(@NotNull AnActionEvent e) {
     Project project = repository.getProject();
-    AppUiUtil.invokeLaterIfNeeded(project, this::fetch);
+    ZUiUtil.invokeLaterIfNeeded(project, this::fetch);
   }
 
   private void fetch() {

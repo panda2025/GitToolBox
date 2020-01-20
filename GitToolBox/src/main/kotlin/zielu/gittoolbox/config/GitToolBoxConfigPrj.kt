@@ -12,11 +12,11 @@ import zielu.gittoolbox.util.AppUtil
 
 @State(name = "GitToolBoxProjectSettings", storages = [Storage("git_toolbox_prj.xml")])
 internal data class GitToolBoxConfigPrj(
-  var autoFetch: Boolean = true,
+  var autoFetch: Boolean = false,
   var autoFetchIntervalMinutes: Int = AutoFetchParams.DEFAULT_INTERVAL_MINUTES,
   @Deprecated("Since 192.3.1") var autoFetchExclusions: List<String> = ArrayList(),
   var autoFetchExclusionConfigs: List<AutoFetchExclusionConfig> = ArrayList(),
-  var autoFetchOnBranchSwitch: Boolean = true,
+  var autoFetchOnBranchSwitch: Boolean = false,
   var commitDialogCompletion: Boolean = true,
   var completionConfigs: List<CommitCompletionConfig> = arrayListOf(CommitCompletionConfig()),
   var referencePointForStatus: ReferencePointForStatusConfig = ReferencePointForStatusConfig(),
